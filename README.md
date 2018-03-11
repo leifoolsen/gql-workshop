@@ -63,7 +63,6 @@ git push
 ```
 
 ### Start koding
-* 
 ```bash 
 npm run start:dev  # Start applikasjonen i utviklingsmodus
 ``` 
