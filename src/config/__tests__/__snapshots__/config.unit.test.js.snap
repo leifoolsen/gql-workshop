@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Config development skal returnere konfigurasjon for NODE_ENV="development 1`] = `
+Object {
+  "default": Object {
+    "apiServer": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "host": "localhost",
+      "port": 3001,
+      "scheme": "http",
+    },
+    "isDev": true,
+    "isHot": false,
+    "isProd": false,
+    "isTest": false,
+    "logger": Object {
+      "console": Object {
+        "level": "debug",
+        "silent": false,
+      },
+      "file": Object {
+        "filename": "./logs/application.log",
+        "level": "error",
+        "silent": true,
+      },
+    },
+    "server": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "contentBase": "client",
+      "historyApiFallback": Object {
+        "verbose": true,
+      },
+      "host": "localhost",
+      "port": 3000,
+      "proxy": Object {
+        "/graphql": Object {
+          "changeOrigin": true,
+          "logLevel": "debug",
+          "secure": false,
+          "target": "http://localhost:3001",
+        },
+      },
+      "publicPath": "/",
+      "scheme": "http",
+    },
+    "useProxy": false,
+  },
+}
+`;
+
+exports[`Config production skal returnere konfigurasjon for NODE_ENV="production 1`] = `
+Object {
+  "default": Object {
+    "apiServer": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "host": "localhost",
+      "port": 3001,
+      "scheme": "http",
+    },
+    "isDev": true,
+    "isHot": false,
+    "isProd": false,
+    "isTest": false,
+    "logger": Object {
+      "console": Object {
+        "level": "debug",
+        "silent": false,
+      },
+      "file": Object {
+        "filename": "./logs/application.log",
+        "level": "error",
+        "silent": true,
+      },
+    },
+    "server": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "contentBase": "client",
+      "historyApiFallback": Object {
+        "verbose": true,
+      },
+      "host": "localhost",
+      "port": 3000,
+      "proxy": Object {
+        "/graphql": Object {
+          "changeOrigin": true,
+          "logLevel": "debug",
+          "secure": false,
+          "target": "http://localhost:3001",
+        },
+      },
+      "publicPath": "/",
+      "scheme": "http",
+    },
+    "useProxy": false,
+  },
+}
+`;
+
+exports[`Config test skal returnere konfigurasjon for NODE_ENV="test 1`] = `
+Object {
+  "default": Object {
+    "apiServer": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "host": "localhost",
+      "port": 3001,
+      "scheme": "http",
+    },
+    "isDev": true,
+    "isHot": false,
+    "isProd": false,
+    "isTest": false,
+    "logger": Object {
+      "console": Object {
+        "level": "debug",
+        "silent": false,
+      },
+      "file": Object {
+        "filename": "./logs/application.log",
+        "level": "error",
+        "silent": true,
+      },
+    },
+    "server": Object {
+      "apiPath": "/graphql",
+      "compression": false,
+      "contentBase": "client",
+      "historyApiFallback": Object {
+        "verbose": true,
+      },
+      "host": "localhost",
+      "port": 3000,
+      "proxy": Object {
+        "/graphql": Object {
+          "changeOrigin": true,
+          "logLevel": "debug",
+          "secure": false,
+          "target": "http://localhost:3001",
+        },
+      },
+      "publicPath": "/",
+      "scheme": "http",
+    },
+    "useProxy": false,
+  },
+}
+`;

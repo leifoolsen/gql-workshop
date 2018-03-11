@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="author" content="UX-teamet">
+    <title>React + GraphQL</title>
+</head>
+<body style="margin: 0 16px;">
+<noscript>
+    If you're seeing this message, that means
+    <strong>JavaScript has been disabled on your browser</strong>,
+    please <strong>enable JS</strong> to make this app work.
+</noscript>
+
+<div id="app"></div>
+
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" >
+
+<!-- Apollo Client krever at fetch er definert før avhengighetene lastes. -->
+<!-- Av gamle nettleseres som skal støttes, er det kun ie11 vi trenger å bry oss med -->
+<!-- Dette er eneste måten jeg har kommet fram til å gjøre det på -->
+<script type="text/javascript">
+  if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent))
+    document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,fetch"><\/script>');
+</script>
+
+</body>
+</html>

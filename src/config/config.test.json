@@ -1,0 +1,22 @@
+{
+  "server": {
+    "server": {
+      "port": 3002
+    },
+    "apiServer": {
+      "port": 3003
+    },
+    "logger": {
+      "console": {
+        "level": "info"
+      }
+    }
+  },
+  "client": {
+    "logger": {
+      "remote": {
+        "silent": "true"
+      }
+    }
+  }
+}

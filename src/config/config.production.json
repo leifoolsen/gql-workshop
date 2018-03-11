@@ -1,0 +1,26 @@
+{
+  "server": {
+    "server": {
+      "port": 8080,
+      "compression": true,
+      "historyApiFallback": {
+        "verbose": false
+      }
+    },
+    "logger": {
+      "console": {
+        "level": "info"
+      },
+      "file": {
+        "silent": false
+      }
+    }
+  },
+  "client": {
+    "logger": {
+      "console": {
+        "level": "info"
+      }
+    }
+  }
+}
