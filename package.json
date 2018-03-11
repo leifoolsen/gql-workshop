@@ -1,15 +1,11 @@
 {
-  "name": "ux-poc",
+  "name": "gql-workshop",
   "version": "0.0.0",
   "main": "index.js",
-  "author": {
-    "name": "UX teamet",
-    "url": "https://www.brreg.no/"
-  },
-  "description": "React boilerplate for brsys",
+  "description": "GraphQL workshop",
   "repository": {
     "type": "git",
-    "url": "https://stash.brreg.no/scm/ux/ux-poc.git"
+    "url": "https://github.com/leifoolsen/gql-workshop.git"
   },
   "license": "MIT",
   "keywords": [
@@ -17,7 +13,7 @@
     "graphql"
   ],
   "engines": {
-    "node": "8.9.0"
+    "node": ">=8.9.0"
   },
   "browserslist": [
     "last 2 versions",
@@ -40,7 +36,6 @@
   "scripts": {
     "clean": "rimraf build dist coverage",
     "setup": "npm run clean && npm install",
-    "postsetup": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 selenium-standalone install",
     "start": "cross-env NODE_ENV=production node ./dist/bin/index.js",
     "start:dev": "cross-env NODE_ENV=development node ./src/bin/index.js",
     "prestart:api": "rimraf build",
