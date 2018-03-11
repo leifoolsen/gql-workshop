@@ -1,16 +1,15 @@
 # Kom i gang med utvikling
 
-Naviger til https://stash.brreg.no/projects/UX/repos/ux-poc/browse. Velg `Clone` fra menyen og kopier URL fra dialogen. 
-Åpne et kommandovindu. Flytt til en katalog hvor du ønsker å ha prosjektet. Kjør de fire følgende kommandoene.
+Følg disse stegene for å benytte dette prosjektet sum en basis for ditt eget prosjekt.
 
 ```bash
 # Flytt til ønsket utviklingskatalog
 cd dev
 
-# Klon prosjektet; <brukerident> er din bruker (f.eks extloo)
-git clone https://<brukerident>@stash.brreg.no/scm/ux/ux-poc.git  
+# Klon prosjektet
+git clone https://github.com/leifoolsen/gql-workshop.git
 
-cd ux-poc           # Flytt til prosjektroten
+cd gql-workshop     # Flytt til prosjektroten
 npm install         # Installer avhengigheter
 npm run start:dev   # Start utvikling
 ```
@@ -20,7 +19,9 @@ npm run start:dev   # Start utvikling
 ## Slik benytter du dette prosjektet som en mal for eget prosjekt
 Før du kan benytte dette prosjektet som et utgangspunkt for ditt eget prosjekt, må du fjerne eksisterende `.git`-filer.
 ```bash
-cd ux-poc             # Flytt til prosjektroten
+cd ..                          # Flytt til parent directory
+mv gql-workshop mitt-prosjekt  # Gi prosjektkatalogen et navn som gjenspeiler  prosjektnavnet
+cd mitt-ptrosjekt              # Flytt til den nye prosjektroten
 ```
 
 **Fjern `.git`, Windows**
@@ -34,26 +35,17 @@ rmdir .git            # Fjerner .git katalogen
 rm -rf .git
 ```
 
-**Opprett ditt eget prosjekt i stash**
-* Etter at du har opprettet ditt prosjekt:
-  * Klon prosjektet du opprettet i stash
-  * Kopier (eller flytt) filene fra dette prosjektet til ditt eget prosjekt
-    * Husk å fjerne `.git` og `.idea` før du kopierer filene fra dette prosjektet 
-  * Åpne `package.json`
+**Åpne `package.json`**
 
 ```json
 {
-  "name": "ux-poc",
+  "name": "gql-workshop",
   "version": "0.0.0",
   "main": "index.js",
-  "author": {
-    "name": "UX teamet",
-    "url": "https://www.brreg.no/"
-  },
-  "description": "React boilerplate for brsys",
+  "description": "GraphQL workshop",
   "repository": {
     "type": "git",
-    "url": "https://stash.brreg.no/scm/ux/ux-poc.git"
+    "url": "https://github.com/leifoolsen/gql-workshop.git"
   }
 }
 ```
@@ -63,9 +55,10 @@ rm -rf .git
 * Deretter: 
 
 ```bash
-git add -a .
-git push
-git commit -am "Initiell commit"
+git init
+git add .
+git commit -m "initial commit"
+git remote add origin <ssh_or_https_url>
 ```
 
 ### Start koding
