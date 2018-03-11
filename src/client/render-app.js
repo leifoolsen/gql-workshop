@@ -34,11 +34,4 @@ const start = () => {
   renderApp(App);
 };
 
-// need to re-mount app component on hot reload
-// if (module.hot) {
-//   module.hot.accept('./containers/App.js', () => {
-//     renderApp(require('./containers/App.js').default); // eslint-disable-line global-require
-//   });
-// }
-
 export default start;
