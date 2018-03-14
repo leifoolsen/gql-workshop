@@ -1,10 +1,10 @@
 import React from 'react';
 import {hot} from 'react-hot-loader';
-import Utlegg from './Utlegg';
+import SearchContainer from './SearchContainer';
 
 const App = () => (
   <div>
-    <Utlegg />
+    <SearchContainer />
   </div>);
 
 export default hot(module)(App);

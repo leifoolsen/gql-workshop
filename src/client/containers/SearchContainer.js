@@ -89,7 +89,7 @@ const SearchResult = ({result}) => { // eslint-disable-line react/prop-types
   return null;
 };
 
-class Utlegg extends React.Component {
+class SearchContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -139,4 +139,4 @@ class Utlegg extends React.Component {
   }
 }
 
-export default withApollo(Utlegg);
+export default withApollo(SearchContainer);
