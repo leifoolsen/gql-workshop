@@ -33,6 +33,11 @@
       "src/client"
     ]
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
   "scripts": {
     "clean": "rimraf build dist coverage",
     "setup": "npm run clean && npm install",
@@ -50,7 +55,6 @@
     "test": "npm-run-all test:*",
     "test:unit": "cross-env NODE_ENV=test jest --config=tools/jest/jest.unit.config.js --coverage --forceExit",
     "test:it": "cross-env NODE_ENV=test jest --config=tools/jest/jest.integration.config.js --coverage --forceExit",
-    "precommit": "npm run lint && npm run test:unit",
     "release:patch": "npm run lint && npx standard-version -r patch && git push --follow-tags origin master",
     "release:minor": "npm run lint && npx standard-version -r minor && git push --follow-tags origin master",
     "release:major": "npm run lint && npx standard-version -r major && git push --follow-tags origin master"
@@ -94,16 +98,16 @@
     "eslint-plugin-import": "2.9.0",
     "eslint-plugin-jsx-a11y": "6.0.3",
     "eslint-plugin-react": "7.7.0",
-    "express": "4.16.2",
+    "express": "4.16.3",
     "extract-text-webpack-plugin": "3.0.2",
     "graphql": "0.13.1",
-    "graphql-tools": "2.21.0",
+    "graphql-tools": "2.22.0",
     "helmet": "3.12.0",
     "hpp": "0.2.2",
     "html-loader": "0.5.5",
     "html-webpack-plugin": "3.0.6",
-    "http-proxy-middleware": "0.17.4",
-    "husky": "^0.14.3",
+    "http-proxy-middleware": "0.18.0",
+    "husky": "0.15.0-rc.9",
     "identity-obj-proxy": "3.0.0",
     "import-fresh": "2.0.0",
     "jest": "22.4.2",
@@ -123,11 +127,11 @@
     "webpack-dev-middleware": "2.0.6",
     "webpack-hot-middleware": "2.21.2",
     "webpack-node-externals": "1.6.0",
-    "winston": "2.4.0"
+    "winston": "2.4.1"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "1.1.10",
-    "apollo-client": "2.2.6",
+    "apollo-cache-inmemory": "1.1.11",
+    "apollo-client": "2.2.7",
     "apollo-link-http": "1.5.3",
     "axios": "0.18.0",
     "babel-polyfill": "6.26.0",

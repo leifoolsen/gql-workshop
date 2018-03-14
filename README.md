@@ -62,6 +62,9 @@ git remote add origin <ssh_or_https_url>
 git push
 ```
 
+>Det finnes flere måter å kopiere fra et eksisterende git/stash prosjekt til et nytt prosjekt.
+>Benytt den framgangsmåten som passer deg best. 
+
 ### Start koding
 ```bash 
 npm run start:dev  # Start applikasjonen i utviklingsmodus
@@ -144,16 +147,16 @@ npm run start:dev  # Start applikasjonen i utviklingsmodus
 
 | Kommando               | Beskrivelse                                                                                    |
 | ---------------------- | ---------------------------------------------------------------------------------------------- |
+| `clean`                | Sletter genererte kalaloger, som `./build` og `./dist`.                                        |
 | `setup`                | Kjører `clean && npm install && selenium-standalone install`.                                  |
 | `start:dev`            | Starter HMR utviklingsserver.                                                                  |
 | `start:dev -- --proxy` | Starter HMR utviklingsserver med proxy mot separat API-server.                                 |
 | `start:api`            | Starter HMR API server på `localhost:3001`.                                                    |
 | `start`                | Kjører bundlet kode fra `./dist`. Bundlet kode må bygges med `build` før den kan kjøres.       |
 | `build`                | Bygger (bundler) klient- og serverkode til `./dist`.                                           |
-| `clean`                | Sletter genererte kalaloger, som `./build` og `./dist`.                                        |
 | `lint`                 | Kjører `lint:js` og `lint:css`.                                                                |
 | `lint:js`              | Lint `.js` filer (Benytt `--fix` for å autokorrigere eslint feil).                             |
-| `lint:style`           | Lint `.css` filer (Benytt `--fix` fpr å autokorrigere stylelint errors).                       |
+| `lint:style`           | Lint `.css` filer (Benytt `--fix` for å autokorrigere stylelint errors).                       |
 | `test`                 | Kjører `test:unit` og `test:it`                                                                |
 | `test:unit`            | Kjører enhetstester.                                                                           |
 | `test:unit -- --watch` | Kjører enhetstester kontinuerlig. Kun tester relatert til kode som endres kjøres på nytt.      |
@@ -161,7 +164,7 @@ npm run start:dev  # Start applikasjonen i utviklingsmodus
 | `test:it -- --watch`   | Kjører integrasjonstester kontinuerlig. Kun tester relatert til kode som endres kjøres på nytt.|
 
 ## Utvikling
-All kode utvikles og bygges/bundles med Webpack.
+All kode utvikles og bygges/bundles med [Webpack](https://webpack.js.org/concepts/).
 
 ### Code splitting - Common Chunks Plugin
 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) benyttes for å dele koden opp i 
@@ -229,10 +232,50 @@ npm start              # Start applikajonen med bundlet kode (produksjonsklar)
 Åpne nettleser og naviger til: `localhost:8080`
 
 ## Konfigurasjon av applikasjonen
+Prosjektet benytter [nconf](https://github.com/indexzero/nconf) til konfigurasjonsstyring.
+
+```
+.
+└── src                                     
+    └── config                              
+        ├── config.default.json             
+        ├── config.development.json         
+        ├── config.production.json          
+        ├── config.test.json                
+        └── index.js                        
+```
+
 Konfigurasjonsinstillinger for applikasjonen finnes i katalogen `./src/config`. Standardinnstillinger er 
 definert i filen `config.default.js`. Filen lastes sammen med en konfigurasjonsfil gitt av miljøvariabelen 
 `process.env.NODE_ENV`. Dersom `process.env.NODE_ENV` er satt til `"production"`, vil konfigurasjonsinnstillinger
 gitt i `config.production.json` overskrive standardinstillingene i `config.default.js`. 
+
+### Bruk av konfigurasjonsfiler
+Kode som kjører direkte under Node; webpack, server, tester, o.l, kan lese konfigurasjonsfiler direkte. Klientkode
+kan ikke lese konfigurasjon direkte fra en fil. Til å overføre konfigurasjonsvariabler til klienten, benyttes 
+`webpack.EnvironmentPlugin`.
+
+```javascript
+import config from '../../src/config';
+const {scheme, host, port, publicPath, apiPath} = config.server;
+
+new webpack.EnvironmentPlugin({
+  BUILD_TARGET: 'client',
+  NODE_ENV: process.env.NODE_ENV,
+  SCHEME: scheme,
+  HOST: host,
+  PORT: port,
+  PUBLIC_PATH: publicPath,
+  API_PATH: apiPath,
+  __DEV__: isDev,
+})
+```
+
+Variablene kan ved behov aksesseres i klientkoden via `process.env`.
+
+```javascript
+console.log(process.env.SCHEME, process.env.HOST, process.env.PORT, process.env.API_PATH);
+```
 
 ## Lint
 Lintere sørger for at utviklere i et prosjekt forholder seg til en felles kodestandard og hjelper til med å avdekke 
@@ -251,6 +294,37 @@ av CSS. Regler som avviker fra dette oppsettet er definert `.stylelintrc`.
 ## Test
 Som testrammeverk benyttes [Jest](https://facebook.github.io/jest/). Jest forventer at tester er plassert i `__tests__`, 
 eller så må filnavnet slutte med `.spec.js` eller `.test.js`. 
+
+Jest konfigureres via `jest` i `package.json`
+
+```json
+{
+  "jest": {
+    "notify": true,
+    "setupFiles": [
+      "raf/polyfill",
+      "<rootDir>/tools/jest/setup.js"
+    ],
+    "globals": {
+      "__DEV__": true
+    },
+    "moduleDirectories": [
+      "node_modules",
+      "src/client"
+    ]
+  }
+}
+```
+
+Overstyring av Jest-konfigurasjon skjer via `scripts` i `package.json`.
+```json
+{
+  "scripts": {
+    "test:unit": "jest --config=tools/jest/jest.unit.config.js",
+    "test:it": "jest --config=tools/jest/jest.integration.config.js"
+  }
+}
+```
 
 ### Enhetstester
 Enhetstester kjører mot en spesifikk fil/modul, så det er naturlig å legge disse testene sammen med koden 
@@ -292,8 +366,8 @@ Til enhetstesting av Reactkomponenter benyttes [Jest](https://facebook.github.io
 sammen med [Enzyme](https://github.com/airbnb/enzyme/).
 
 ### Integrasjonstester
-For å komme fram til resultatet som skal testes er integrasjonstester ofte avhengig av å kjøre kode som ligger 
-spredt i flere filer/moduler. Det er derfor naturlig å plassere integrasjonstestene under en felles testkatalog.
+Integrasjonstester er ofte avhengig av å kjøre kode som ligger spredt i flere filer/moduler. 
+Det er derfor naturlig å plassere integrasjonstestene under en felles testkatalog.
 Benytt følgende oppsett:
  
 ```
@@ -302,16 +376,30 @@ Benytt følgende oppsett:
 │   └── server                        
 │       └── api
 │           └── api.js                
-└── tests                        
-   ├── integration
-   │   └── server
-   │       └── api
-   │           └── api.integration.test.js
-   └── features
-       └── step_definitions
+└── test                        
+   └── integration
+       └── server
+           └── api
+               └── api.integration.test.js
 ```
 
+Integrasjonstester kjøres med Jest og de tredjeparts tillegg som er nødvendig for å gjennomføre en integrasjonstest.
+
 ## Commit med 🐶 woof!
-Prosjektet kjører `npm run lint` og `npm run test:it` før faktisk commit mot git. Denne prosessen 
+Prosjektet kjører `npm run lint` før faktisk commit mot git. Denne prosessen 
 automatiseres med [Husky](https://github.com/typicode/husky). Hvilke script som skal kjøres før
-commit, styres via `precommit`-scriptet i `package.json`. 
+commit, defineres via `husky.hooks` i `package.json`.
+ 
+```json
+{
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  }
+}
+```
+
+>**IntelliJ**: Dersom du kjører `git commit` fra IntelliJ, kan det virke som om commiten tar lengre tid enn det du er
+>vant til. Dette har å gjøre med at det ikke vises noen aktivitet i konsollet mens Husky gjør det den
+>skal gjøre. Sjekk Event Log vinduet i IntelliJ dersom du får en commitfeil.
