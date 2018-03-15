@@ -406,6 +406,8 @@ commit, defineres via `husky.hooks` i `package.json`.
 
 
 ## Nyttige lenker
+* [graphql.org](http://graphql.org/)
+* [Apollo GraphQL](https://www.apollographql.com/)
 * [The Fullstack Tutorial for GraphQL](https://www.howtographql.com/)
 * [Creating a structured, hot-reloadable GraphQL API with Express.js, Apollo Server and Webpack](https://hackernoon.com/creating-a-structured-hot-reloadable-graphql-api-with-express-js-de62c859643)
 * [How to build a GraphQL server](https://dev-blog.apollodata.com/tutorial-building-a-graphql-server-cddaa023c035)
@@ -418,4 +420,9 @@ commit, defineres via `husky.hooks` i `package.json`.
 * [Learn Apollo - A hands-on tutorial for Apollo GraphQL Client](https://www.learnapollo.com/)
 * [Implementing GraphQL in React using Apollo](https://scotch.io/tutorials/implementing-graphql-in-react-using-apollo)
 * [Full-stack React + GraphQL Tutorial](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b)
-
+* [GraphQL Tutorial - Getting Started](https://www.jobstart.com/posts/graphql-tutorial-getting-started)
+* [FULL-STACK GRAPHQL WITH APOLLO, METEOR & REACT](https://www.leveluptutorials.com/tutorials/full-stack-graphql-with-apollo-meteor-and-react/series-introduction)
+* [Apollo Server – Introduction](https://codingthesmartway.com/apollo-server-introduction/)
+* [Apollo blog](https://dev-blog.apollodata.com/)
+* [GraphQL After Tutorials: The blog post I wish I had when I started](https://adamtuttle.codes/graphql-after-tutorials/)
+* [Apollo Client](https://www.apollographql.com/docs/react/index.html)
