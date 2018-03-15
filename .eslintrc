@@ -49,6 +49,11 @@
     "import/no-extraneous-dependencies": 0,
     "import/prefer-default-export": 0,
     "indent": [2, 2, {"SwitchCase": 1}],
+    "jsx-a11y/anchor-is-valid": [ "error", {
+      "components": [ "Link" ],
+      "specialLink": [ "to", "hrefLeft", "hrefRight" ],
+      "aspects": [ "noHref", "invalidHref", "preferButton" ]
+    }],
     "jsx-a11y/label-has-for": [ 2, {
       "components": [ "Label" ],
       "required": {

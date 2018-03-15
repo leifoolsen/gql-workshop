@@ -417,7 +417,6 @@ commit, defineres via `husky.hooks` i `package.json`.
 * [GraphQL + Apollo – Part 2: Building a Server](https://spin.atomicobject.com/2017/03/30/graphql-apollo-building-server/)
 * [GraphQL + Apollo – Part 3: Building a Client](https://spin.atomicobject.com/2017/03/31/graphql-apollo-building-client/)
 * [Implementing GraphQL Using Apollo On an Express Server](https://scotch.io/tutorials/implementing-graphql-using-apollo-on-an-express-server)
-* [Learn Apollo - A hands-on tutorial for Apollo GraphQL Client](https://www.learnapollo.com/)
 * [Implementing GraphQL in React using Apollo](https://scotch.io/tutorials/implementing-graphql-in-react-using-apollo)
 * [Full-stack React + GraphQL Tutorial](https://dev-blog.apollodata.com/full-stack-react-graphql-tutorial-582ac8d24e3b)
 * [GraphQL Tutorial - Getting Started](https://www.jobstart.com/posts/graphql-tutorial-getting-started)

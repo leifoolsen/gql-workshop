@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
 import {ApolloClient} from 'apollo-client';
 import {HttpLink} from 'apollo-link-http';
 import {InMemoryCache} from 'apollo-cache-inmemory';
@@ -21,11 +20,9 @@ const client = new ApolloClient({
 
 const renderApp = (Component) => {
   ReactDOM.render(
-    <AppContainer>
-      <ApolloProvider client={client}>
-        <Component />
-      </ApolloProvider>
-    </AppContainer>,
+    <ApolloProvider client={client}>
+      <Component />
+    </ApolloProvider>,
     document.getElementById('app')
   );
 };
