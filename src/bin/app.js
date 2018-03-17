@@ -24,7 +24,7 @@ const setupApp = () => {
   app.disable('x-powered-by');
   app.use(logger.expressMiddleware); // Requestlogger
 
-  // enable CORS with various options
+  // Enable CORS with various options
   app.use(cors());
 
   // Use helmet to secure Express with various HTTP headers
