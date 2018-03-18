@@ -1,6 +1,6 @@
 # Kom i gang med utvikling
 
-Følg disse stegene for å benytte dette prosjektet sum en basis for ditt eget prosjekt.
+Følg disse stegene for å benytte dette prosjektet som en basis for ditt eget prosjekt.
 
 ```bash
 # Flytt til ønsket utviklingskatalog

@@ -3,14 +3,17 @@ import {makeExecutableSchema} from 'graphql-tools';
 // Some fake data
 const books = [
   {
+    isbn: '1',
     title: 'Harry Potter and the Sorcerer\'s stone',
     author: 'J.K. Rowling',
   },
   {
+    isbn: '2',
     title: 'Jurassic Park',
     author: 'Michael Crichton',
   },
   {
+    isbn: '3',
     title: 'The awesome',
     author: 'Knowit Sør',
   },
@@ -25,7 +28,8 @@ const typeDefs = `
   type Mutation {
     addBook(title: String!, author: String!): Book
   }
-  type Book { 
+  type Book {
+    isbn: String, 
     title: String, 
     author: String,
   }
